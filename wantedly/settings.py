@@ -22,12 +22,13 @@ NEWSPIDER_MODULE = 'wantedly.spiders'
 ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 64
+CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS_PER_DOMAIN = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1
+DOWNLOAD_DELAY = 0.8
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -66,7 +67,7 @@ COOKIES_ENABLED = False
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'wantedly.pipelines.WantedlyPipeline': 300,
-    # 'wantedly.pipelines.CsvExporter': 700,
+    'wantedly.pipelines.MySQLPipeline': 700,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -93,6 +94,10 @@ ITEM_PIPELINES = {
 REACTOR_THREADPOOL_MAXSIZE = 20
 
 # FEED_URI = 'file:///Users/kyohei/Documents/wantedly/output.csv'
-FEED_URI = 'file:output.csv'
-FEED_FORMAT = 'csv'
-FEED_EXPORT_FIELDS=['title','entry','url']
+# FEED_URI = 'file:output.csv'
+# FEED_FORMAT = 'csv'
+# FEED_EXPORT_FIELDS=['title','entry','url']
+
+# MYSQL
+MYSQL_USER = 'scraper'
+MYSQL_PASSWORD = 'password'

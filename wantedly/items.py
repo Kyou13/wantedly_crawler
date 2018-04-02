@@ -9,6 +9,7 @@ import scrapy
 
 
 class WantedlyItem(scrapy.Item):
+    id = scrapy.Field()
     title = scrapy.Field()
     url = scrapy.Field()
     entry = scrapy.Field()
